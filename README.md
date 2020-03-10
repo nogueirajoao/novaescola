@@ -44,7 +44,7 @@ Resposta: JSON com dados do cliente acrescido do id (atributo identificador)
         - limite: valor que define quantidade maxima a ser retornada
             caso não seja enviado na requisição, usar valor padrao igual a 10
         - pagina: paginação da listagem baseado no total
-            caso não seja enviado na requisição, usar valor padrao igual a 1
+            caso não seja enviado na requisição, usar valor padrao igual a 0
 
 Corpo: _vazio_
 
