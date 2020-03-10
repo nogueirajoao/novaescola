@@ -1,8 +1,8 @@
-README.md
-
-## Cadastro de Clientes
+# Cadastro de Clientes
 
  Para rodar a aplicação localmente via linha de comando: ```mvn spring-boot:run ```
+
+ URL raiz: http://localhost:8080/cliente
 
 Banco de dados utilizado: H2 DB (em memória)
 ## Endpoints:
