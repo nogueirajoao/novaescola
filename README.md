@@ -7,33 +7,27 @@
 Banco de dados utilizado: H2 DB (em memória)
 ## Endpoints:
 ### Cadastro do cliente
-\[`POST`\] `/cliente`
+\[`POST`\] 
+`/cliente`
 
-Corpo: JSON com dados do cliente a serem cadastrados
-
-    Atributos:
-        - nome: string
-        - email: string
-        - dataDeNascimento: date
-
-Exemplo de corpo
+Exemplo de corpo:
 ```json
 {
     "nome": "José",
     "email": "jose@email.com",
-    "dataDeNascimento": "01/01/2000"
+    "dataNascimento": "01/01/2000"
 }
 ```
 
-Resposta: JSON com dados do cliente acrescido do id (atributo identificador)
+Resposta: 
 
-    Código da resposta: 201
+    HTTP Status: 201
 ```json
 {
     "id": 1,
     "nome": "José",
     "email": "jose@email.com",
-    "dataDeNascimento": "01/01/2000"
+    "dataNascimento": "01/01/2000"
 }
 ```
 
@@ -41,18 +35,17 @@ Resposta: JSON com dados do cliente acrescido do id (atributo identificador)
 \[`GET`\] `/cliente?limite={numero}&pagina={numero}`
 
     Parametros Opcionais:
-        - limite: valor que define quantidade maxima a ser retornada
-            caso não seja enviado na requisição, usar valor padrao igual a 10
-        - pagina: paginação da listagem baseado no total
-            caso não seja enviado na requisição, usar valor padrao igual a 0
+        - limite: valor que define quantidade máxima a ser retornada, caso não seja informado, valor padrão: 10
+        - pagina: paginação da listagem baseado no total,
+            caso não informado por padrão: 0
 
 Corpo: _vazio_
 
-Resposta: lista com objetos cadastrados na base limitados pelo parametro `limite` acrescido com o total de dados existente na base (usado para paginação do frontend)
+Resposta: lista com objetos cadastrados na base limitados pelo paramêtro `limite` acrescido com o total de dados existente na base
 
 Exemplo de resposta de requisição com `limite` igual a 1
 
-    Código da resposta: 200
+    HTTP Status: 200
 ```json
 {
     "total": 2039,
@@ -61,7 +54,7 @@ Exemplo de resposta de requisição com `limite` igual a 1
             "id": 1,
             "nome": "José",
             "email": "jose@email.com",
-            "dataDeNascimento": "01/01/2000"
+            "dataNascimento": "01/01/2000"
         }
     ]
 }
@@ -77,9 +70,7 @@ Corpo: _vazio_
 
 Resposta: objeto com dados do cliente
 
-Exemplo de resposta da requisição
-
-    Código: 200
+    HTTP Status: 200
 ```json
 {
     "id": 1,
@@ -97,7 +88,6 @@ Exemplo de resposta da requisição
 
 Corpo: dados a serem atualizados do cliente
 
-Exemplo do corpo
 ```json
 {
     "nome": "José da Silva"
@@ -106,9 +96,7 @@ Exemplo do corpo
 
 Resposta: objeto com dados do cliente
 
-Exemplo da resposta
-
-    Código da resposta: 200
+    HTTP Status: 200
 ```json
 {
     "id": 1,
@@ -128,4 +116,4 @@ Corpo: _vazio_
 
 Resposta: _vazio_
 
-    Código da resposta: 200
+    HTTP Status: 200
