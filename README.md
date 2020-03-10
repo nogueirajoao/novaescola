@@ -5,6 +5,7 @@
  URL raiz: http://localhost:8080/cliente
 
 Banco de dados utilizado: H2 DB (em memória)
+Testes unitários simples.
 ## Endpoints:
 ### Cadastro do cliente
 \[`POST`\] 
