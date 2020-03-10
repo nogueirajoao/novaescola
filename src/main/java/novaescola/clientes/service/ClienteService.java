@@ -8,6 +8,7 @@ import org.apache.tomcat.jni.Local;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -63,12 +64,24 @@ public class ClienteService {
     }
 
     public void removerCliente(Long id) {
-        repository.deleteById(id);
+        Optional<Cliente> cliente = repository.findById(id);
+
+        if (cliente.isPresent()) {
+            repository.delete(cliente.get());
+        } else {
+            throw new EntityNotFoundException("Nenhuma entidade encontrada com o id: " + id);
+        }
     }
 
-    public ListaClienteResponse buscarTodos(Integer limite, Integer pagina) {
+    public ListaClienteResponse buscarTodos(Integer limite, Integer pagina) throws PaginacaoException {
+
         Pageable pageable = PageRequest.of(pagina, limite);
         Page<Cliente> clientes = repository.findAll(pageable);
+
+        if (clientes.getTotalPages() < pagina) {
+            throw new PaginacaoException("Número excedido de páginas");
+        }
+
         List<ClienteDTO> dtos = new ArrayList<>();
         clientes.forEach(cliente -> {
             dtos.add(converterParaDTO(cliente));

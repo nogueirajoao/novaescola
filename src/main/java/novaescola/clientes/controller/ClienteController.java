@@ -2,6 +2,7 @@ package novaescola.clientes.controller;
 
 import novaescola.clientes.model.ClienteDTO;
 import novaescola.clientes.service.ClienteService;
+import novaescola.clientes.service.PaginacaoException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,9 @@ public class ClienteController {
     }
 
     @GetMapping
-    public ListaClienteResponse buscarTodosClientes(@RequestParam Integer limite, @RequestParam Integer pagina) {
+    public ListaClienteResponse buscarTodosClientes(@RequestParam(required = false, defaultValue = "10") Integer limite,
+                                                    @RequestParam(required = false, defaultValue = "0") Integer pagina)
+            throws PaginacaoException {
         return service.buscarTodos(limite, pagina);
     }
 
